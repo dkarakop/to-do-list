@@ -5,7 +5,7 @@ export const getToDoItems = () => {
 };
 
 export function createToDoItem(text) {
-	const newId = Date.now();
+	const newId = String(Date.now());
 
 	return fetch("http://localhost:3001/toDos", {
 		method: "POST",
@@ -16,11 +16,10 @@ export function createToDoItem(text) {
 	}).then((response) => response.json());
 }
 
-export async function deleteToDoItem(id) {
-	await fetch(`http://localhost:3001/toDos/${id}`, {
+export function deleteToDoItem(id) {
+	return fetch(`http://localhost:3001/toDos/${id}`, {
 		method: "DELETE",
 	});
-	return getToDoItems();
 }
 
 export const searchItems = (text) => {
