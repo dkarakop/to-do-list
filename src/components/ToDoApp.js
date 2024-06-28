@@ -1,15 +1,34 @@
 import { useEffect, useReducer } from "react";
-import { createToDoItem, getToDoItems, deleteToDoItem } from "../modules/api";
+import {
+	createToDoItem,
+	getToDoItems,
+	deleteToDoItem,
+	editToDoItem,
+} from "../modules/api";
 import ToDoListItem from "./ToDoListItem";
 import SearchBar from "./SearchBar";
-import ModalWindow from "./ModalWindow";
+import ModalWindow from "./Modal";
+import styles from "./ToDoApp.module.css";
 
 export default function ToDoApp() {
+	let initialState = {
+		toDos: [],
+		filteredToDos: [],
+		filters: {
+			text: "",
+			status: "all",
+		},
+		isModalOpen: false,
+		selectedToDo: null,
+	};
+
 	function toDosReducer(state, action) {
 		const newState = {
 			toDos: state.toDos,
 			filteredToDos: state.filteredToDos,
 			filters: state.filters,
+			isModalOpen: state.isModalOpen,
+			selectedToDo: state.selectedToDo,
 		};
 		switch (action.type) {
 			case "UPDATE_TODOS":
@@ -21,20 +40,22 @@ export default function ToDoApp() {
 			case "UPDATE_FILTERS":
 				newState.filters = action.filters;
 				break;
+			case "CREATE_TODO":
+				newState.selectedToDo = null;
+				newState.isModalOpen = true;
+				break;
+			case "EDIT_TODO":
+				newState.selectedToDo = action.toDo;
+				newState.isModalOpen = true;
+				break;
+			case "CLOSE_MODAL":
+				newState.isModalOpen = false;
+				break;
 			default:
 				break;
 		}
 		return newState;
 	}
-
-	let initialState = {
-		toDos: [],
-		filteredToDos: [],
-		filters: {
-			text: "",
-			status: "all",
-		},
-	};
 
 	const [state, dispatch] = useReducer(toDosReducer, initialState);
 
@@ -77,16 +98,26 @@ export default function ToDoApp() {
 		dispatch({ type: "UPDATE_FILTERS", filters });
 	}
 
-	function onApply(text) {
-		createToDoItem(text).then(() => {
-			getToDoItems().then((toDos) => {
-				dispatch({ type: "UPDATE_TODOS", toDos });
+	function onApply(toDo) {
+		if (toDo.id) {
+			editToDoItem(toDo).then(() => {
+				getToDoItems().then((toDos) => {
+					dispatch({ type: "UPDATE_TODOS", toDos });
+					dispatch({ type: "CLOSE_MODAL" });
+				});
 			});
-		});
+		} else {
+			createToDoItem(toDo.text).then(() => {
+				getToDoItems().then((toDos) => {
+					dispatch({ type: "UPDATE_TODOS", toDos });
+					dispatch({ type: "CLOSE_MODAL" });
+				});
+			});
+		}
 	}
 
 	function onEdit(toDo) {
-		console.log("EDIT", toDo);
+		dispatch({ type: "EDIT_TODO", toDo });
 	}
 
 	function onDelete(toDo) {
@@ -97,16 +128,38 @@ export default function ToDoApp() {
 		});
 	}
 
+	function createToDo() {
+		dispatch({ type: "CREATE_TODO" });
+	}
+
+	function cancelModal() {
+		dispatch({ type: "CLOSE_MODAL" });
+	}
+
 	return (
-		<div>
-			<h1>TODO LIST</h1>
-			<SearchBar onSearch={onSearch} />
-			<ul>
-				{state.filteredToDos.map((toDo) =>
-					ToDoListItem({ toDo, onEdit, onDelete })
-				)}
-			</ul>
-			<ModalWindow onApply={onApply} />
+		<div className={styles.appContainer}>
+			<header>
+				<h1>ToDo List</h1>
+				<SearchBar onSearch={onSearch} />
+			</header>
+			<main>
+				<ul className={styles.toDolist}>
+					{state.filteredToDos.map((toDo) =>
+						ToDoListItem({ toDo, onEdit, onDelete })
+					)}
+				</ul>
+				<button
+					onClick={createToDo}
+					className={styles.toDolist__btnCreate}
+				></button>
+				<ModalWindow
+					isOpen={state.isModalOpen}
+					onApply={onApply}
+					onCancel={cancelModal}
+					toDo={state.selectedToDo}
+					className={styles.ModalWindow}
+				/>
+			</main>
 		</div>
 	);
 }

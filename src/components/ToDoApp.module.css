@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--primaryColor: #6c63ff;
+	--whiteColor: #f7f7f7;
+	--blackColor: #252525;
+	--overlayBackgroundColor: #252525b2;
+	--lightPurpleColor: #6c63ff66;
+	--lightPurpleFontColor: #c3c1e5;
+	--btnPurple: #5850dd;
+	--btnPurpleHover: #534cc2;
+	--btnGrey: #cdcdcd;
+}
+
+body {
+	font-family: "Kanit", sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 20px;
+	text-align: left;
+	display: flex;
+	place-content: center;
+	background-color: var(--whiteColor);
+}
+
+/* General rules for elements */
+
+/* ----input---- */
+input {
+	color: var(--primaryColor);
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: left;
+	width: 100%;
+	padding: 8px 16px 8px 16px;
+	border: 1px solid var(--primaryColor);
+	border-radius: 5px;
+}
+
+input::placeholder {
+	color: var(--lightPurpleFontColor);
+	border: none;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 2px var(--primaryColor);
+}
+
+/* ----buttons---- */
+button {
+	font-family: "Kanit", sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 18px;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: var(--primaryColor);
+	border-radius: 5px;
+	transition: 0.2s ease-in;
+}
+
+button:hover {
+	background-color: var(--btnPurple);
+}
+
+/* ----cursor---- */
+button,
+select:hover,
+option:hover {
+	cursor: pointer;
+}
+
+p {
+	cursor: default;
+}
+/* ----------------------------------- */
+
+.appContainer {
+	width: 750px;
+	height: 100vh;
+	position: relative;
+}
+
+header {
+	height: 135px;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+}
+
+h1 {
+	color: var(--blackColor);
+	font-size: 26px;
+	font-weight: 500;
+	line-height: 38.87px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 122px;
+	height: 39px;
+	margin-bottom: 10px;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+}
+.toDolist {
+	width: 520px;
+	max-height: 65vh;
+	overflow-y: auto;
+	top: 30px;
+	left: 115px;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 0.5rem;
+}
+
+.toDolist__li {
+	height: 26px;
+	border-bottom: 1px solid var(--primaryColor);
+	padding-bottom: 1.8rem;
+	text-align: left;
+	text-transform: uppercase;
+	display: flex;
+	gap: 1rem;
+	place-items: center;
+}
+
+.toDolist__li:hover .toDoList__btnContainer {
+	opacity: 1;
+}
+
+.toDolist__li:first-child {
+	margin-top: 1.5rem;
+}
+
+.toDolist__li:last-child {
+	border: none;
+}
+
+.toDolist__checkbox {
+	width: 26px;
+	height: 26px;
+	border-radius: 2px;
+	background-color: var(--whiteColor);
+	border: 1px solid var(--primaryColor);
+}
+
+.toDolist__checkbox:hover {
+	background-color: transparent;
+}
+.toDolist__checkbox--completed {
+	background-color: var(--primaryColor);
+	background: url("../images/btn-checked.svg") no-repeat;
+	background-size: 7px;
+	background-position: 50% 50%;
+}
+
+.toDolist__text {
+	display: inline-block;
+	width: 420px;
+	height: 20px;
+}
+
+.toDolist__text--completed {
+	text-decoration: line-through;
+}
+
+.toDoList__btnContainer {
+	opacity: 0;
+	width: 62px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.toDolist__buttons {
+	width: 18px;
+	height: 18px;
+	background-position: 50% 50%;
+	color: var(--btnGrey);
+	border: none;
+	cursor: pointer;
+}
+
+.toDolist__btnEdit {
+	background: url("../images/btn-edit.svg") no-repeat;
+}
+.toDolist__btnEdit:hover {
+	background: url("../images/btn-edit-purple.svg") no-repeat;
+}
+
+.toDolist__btnDelete {
+	background: url("../images/btn-delete.svg") no-repeat;
+}
+
+.toDolist__btnDelete:hover {
+	background: url("../images/btn-delete-red.svg") no-repeat;
+}
+
+.toDolist__btnCreate {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 0;
+	bottom: 2rem;
+	display: inline-block;
+	background: url("../images/btn-create.svg") no-repeat;
+	background-position: 50% 50%;
+	border: 2px solid var(--primaryColor);
+	border-radius: 50%;
+	box-shadow: 0px 0px 4px 0px var(--primaryColor);
+	background-color: var(--primaryColor);
+}
+.toDolist__btnCreate:hover {
+	background-color: var(--btnPurpleHover);
+}
