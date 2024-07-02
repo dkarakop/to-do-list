@@ -7,15 +7,44 @@
 }
 
 :root {
-	--primaryColor: #6c63ff;
-	--whiteColor: #f7f7f7;
-	--blackColor: #252525;
-	--overlayBackgroundColor: #252525b2;
-	--lightPurpleColor: #6c63ff66;
-	--lightPurpleFontColor: #c3c1e5;
-	--btnPurple: #5850dd;
-	--btnPurpleHover: #534cc2;
-	--btnGrey: #cdcdcd;
+	--purple: #6c63ff;
+	--purple-dark: #534cc2;
+	--purple-light: #c3c1e5;
+	--white: #f7f7f7;
+	--white-transparent: #ffffff80;
+	--gray: #cdcdcd;
+	--gray-dark: #666666;
+	--black: #252525;
+	--black-transparent: #252525b2;
+
+	--text: var(--black);
+	--text-input: var(--purple);
+	--text-btn: var(--white);
+	--text-btn-secondary: var(--purple);
+	--text-placeholder: var(--purple-light);
+	--text-completed: var(--black-transparent);
+
+	--page-background: var(--white);
+	--btn-background: var(--purple);
+	--btn-hover-background: var(--purple-dark);
+	--btn-secondary-hover-background: var(--purple-light);
+	--overlay-background: var(--black-transparent);
+	--scrollbar-track-background: var(--purple-light);
+	--scrollbar-thumb-background: var(--purple);
+	--scrollbar-thumb-hover-background: var(--purple-dark);
+
+	--input-border: var(--purple);
+	--btn-border: var(--purple);
+	--li-border: var(--purple);
+	--modal-border: var(--white);
+
+	--input-shadow: var(--purple);
+	--btn-shadow: var(--purple);
+
+	--search-icon: url("../images/search-icon.svg");
+	--dark-mode-icon: url("../images/btn-dark-mode.svg");
+
+	--emptyList-icon: url("../images/detective-check-footprint.svg");
 }
 
 body {
@@ -26,14 +55,16 @@ body {
 	text-align: left;
 	display: flex;
 	place-content: center;
-	background-color: var(--whiteColor);
+	background-color: var(--page-background);
+	color: var(--text);
+	width: 100%;
 }
 
 /* General rules for elements */
 
 /* ----input---- */
 input {
-	color: var(--primaryColor);
+	color: var(--text-input);
 	font-family: "Inter", sans-serif;
 	font-size: 16px;
 	font-weight: 500;
@@ -41,18 +72,18 @@ input {
 	text-align: left;
 	width: 100%;
 	padding: 8px 16px 8px 16px;
-	border: 1px solid var(--primaryColor);
+	border: 1px solid var(--input-border);
 	border-radius: 5px;
 }
 
 input::placeholder {
-	color: var(--lightPurpleFontColor);
+	color: var(--text-placeholder);
 	border: none;
 }
 
 input:focus {
 	outline: none;
-	box-shadow: 0 0 2px var(--primaryColor);
+	box-shadow: 0 0 4px var(--input-shadow);
 }
 
 /* ----buttons---- */
@@ -63,13 +94,13 @@ button {
 	line-height: 18px;
 	text-align: center;
 	text-transform: uppercase;
-	background-color: var(--primaryColor);
+	background-color: var(--btn-background);
 	border-radius: 5px;
 	transition: 0.2s ease-in;
 }
 
 button:hover {
-	background-color: var(--btnPurple);
+	background-color: var(--btn-hover-background);
 }
 
 /* ----cursor---- */
@@ -81,6 +112,25 @@ option:hover {
 
 p {
 	cursor: default;
+}
+
+/* Target the scrollbar on the body element */
+ul::-webkit-scrollbar {
+	width: 12px;
+}
+
+/* Track - the part behind the handle */
+ul::-webkit-scrollbar-track {
+	background: var(--scrollbar-track-background);
+}
+
+/* Handle - the draggable scrolling box */
+ul::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-thumb-background);
+}
+/* Handle on hover - changes color when the mouse hovers over the scrollbar */
+ul::-webkit-scrollbar-thumb:hover {
+	background: var(--scrollbar-thumb-hover-background);
 }
 /* ----------------------------------- */
 
@@ -99,7 +149,6 @@ header {
 }
 
 h1 {
-	color: var(--blackColor);
 	font-size: 26px;
 	font-weight: 500;
 	line-height: 38.87px;
@@ -122,16 +171,12 @@ main {
 	top: 30px;
 	left: 115px;
 	list-style: none;
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
 	margin-top: 0.5rem;
 }
 
 .toDolist__li {
-	height: 26px;
-	border-bottom: 1px solid var(--primaryColor);
-	padding-bottom: 1.8rem;
+	border-bottom: 1px solid var(--li-border);
+	padding: 1rem 0;
 	text-align: left;
 	text-transform: uppercase;
 	display: flex;
@@ -151,22 +196,36 @@ main {
 	border: none;
 }
 
+.toDoList--empty {
+	display: none;
+}
+
+.emptyList {
+	height: 300px;
+	width: 100%;
+	margin-top: 1.5rem;
+	padding-top: 200px;
+	background: var(--emptyList-icon) no-repeat;
+	background-position: 50% 0%;
+}
+
 .toDolist__checkbox {
 	width: 26px;
 	height: 26px;
 	border-radius: 2px;
-	background-color: var(--whiteColor);
-	border: 1px solid var(--primaryColor);
+	background-color: transparent;
+	border: 1px solid var(--btn-border);
 }
 
 .toDolist__checkbox:hover {
 	background-color: transparent;
 }
-.toDolist__checkbox--completed {
-	background-color: var(--primaryColor);
+.toDolist__checkbox--checked,
+.toDolist__checkbox--checked:hover {
 	background: url("../images/btn-checked.svg") no-repeat;
-	background-size: 7px;
+	background-size: 0.8rem;
 	background-position: 50% 50%;
+	background-color: var(--btn-background);
 }
 
 .toDolist__text {
@@ -175,8 +234,12 @@ main {
 	height: 20px;
 }
 
-.toDolist__text--completed {
+.toDolist__text--checked {
+	transition: all 0.5s ease-out;
+	transition: 200ms linear 50ms;
 	text-decoration: line-through;
+	color: var(--text-completed);
+	font-weight: 400;
 }
 
 .toDoList__btnContainer {
@@ -190,7 +253,6 @@ main {
 	width: 18px;
 	height: 18px;
 	background-position: 50% 50%;
-	color: var(--btnGrey);
 	border: none;
 	cursor: pointer;
 }
@@ -210,6 +272,12 @@ main {
 	background: url("../images/btn-delete-red.svg") no-repeat;
 }
 
+.toDolist__btnCreate_container {
+	position: fixed;
+	bottom: 0;
+	width: 750px;
+}
+
 .toDolist__btnCreate {
 	width: 50px;
 	height: 50px;
@@ -219,11 +287,81 @@ main {
 	display: inline-block;
 	background: url("../images/btn-create.svg") no-repeat;
 	background-position: 50% 50%;
-	border: 2px solid var(--primaryColor);
+	border: 2px solid var(--btn-border);
 	border-radius: 50%;
-	box-shadow: 0px 0px 4px 0px var(--primaryColor);
-	background-color: var(--primaryColor);
+	box-shadow: 0px 0px 4px 0px var(--btn-shadow);
+	background-color: var(--btn-background);
 }
 .toDolist__btnCreate:hover {
-	background-color: var(--btnPurpleHover);
+	background-color: var(--btn-hover-background);
+}
+
+@media (max-width: 768px) {
+	body {
+		flex-direction: column;
+		place-content: center;
+		place-items: center;
+		font-size: 1.2rem;
+	}
+
+	.appContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		width: 100vw;
+		padding: 1.2rem;
+		padding-top: 1.5rem;
+	}
+
+	header,
+	main {
+		width: 100%;
+	}
+
+	header {
+		padding: 0;
+	}
+
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	main {
+		margin-top: 1.5rem;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	.toDolist {
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		max-height: 60vh;
+		position: relative;
+	}
+
+	.toDolist__text {
+		flex-grow: 2;
+		width: 5rem;
+	}
+	.toDoList__btnContainer {
+		opacity: 1;
+	}
+	.toDolist__btnEdit {
+		background: url("../images/btn-edit-purple.svg") no-repeat;
+	}
+	.toDolist__btnDelete {
+		background: url("../images/btn-delete-red.svg") no-repeat;
+	}
+
+	.toDolist__btnCreate_container {
+		width: 100vw;
+	}
+
+	.toDolist__btnCreate {
+		position: absolute;
+		right: 1rem;
+		bottom: 1rem;
+	}
 }

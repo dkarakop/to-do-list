@@ -1,30 +1,38 @@
-import styles from "./ToDoApp.module.css";
+import lightStyles from "./ToDoApp.module.css";
 
-export default function ToDoListItem({ toDo, onEdit, onDelete }) {
+export default function ToDoListItem({ toDo, onEdit, onDelete, onChecked }) {
 	return (
-		<li key={toDo.id} className={styles.toDolist__li}>
+		<li key={toDo.id} className={lightStyles.toDolist__li}>
 			<button
 				className={
-					styles.toDolist__checkbox +
+					lightStyles.toDolist__checkbox +
 					" " +
-					`styles.toDolist__checkbox--completed`
+					(toDo.completed
+						? lightStyles["toDolist__checkbox--checked"]
+						: "")
 				}
+				onClick={(e) => {
+					e.preventDefault();
+					onChecked(toDo);
+				}}
 			></button>
 			<p
 				className={
-					styles.toDolist__text +
+					lightStyles.toDolist__text +
 					" " +
-					`styles.toDolist__text--completed`
+					(toDo.completed
+						? lightStyles["toDolist__text--checked"]
+						: "")
 				}
 			>
 				{toDo.text}
 			</p>
-			<div className={styles.toDoList__btnContainer}>
+			<div className={lightStyles.toDoList__btnContainer}>
 				<button
 					className={
-						styles.toDolist__btnEdit +
+						lightStyles.toDolist__btnEdit +
 						" " +
-						styles.toDolist__buttons
+						lightStyles.toDolist__buttons
 					}
 					onClick={(e) => {
 						e.preventDefault();
@@ -33,9 +41,9 @@ export default function ToDoListItem({ toDo, onEdit, onDelete }) {
 				></button>
 				<button
 					className={
-						styles.toDolist__btnDelete +
+						lightStyles.toDolist__btnDelete +
 						" " +
-						styles.toDolist__buttons
+						lightStyles.toDolist__buttons
 					}
 					onClick={(e) => {
 						e.preventDefault();

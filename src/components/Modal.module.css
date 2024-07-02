@@ -4,17 +4,17 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: var(--overlayBackgroundColor);
+	background-color: var(--overlay-background);
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
 }
 
 .content {
-	height: 289px;
 	width: 500px;
-	background-color: var(--whiteColor);
-	border: none;
+	height: 289px;
+	background-color: var(--page-background);
+	border: 1px solid var(--modal-border);
 	padding: 20px 30px;
 	margin-top: 7rem;
 	border-radius: 16px;
@@ -38,6 +38,11 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.modal__input {
+	background-color: transparent;
+}
+
 .modal__btnContainer button {
 	width: 110px;
 	height: 38px;
@@ -45,23 +50,23 @@
 }
 
 .modal__btnCancel {
-	color: var(--primaryColor);
-	border: 1px solid var(--primaryColor);
+	color: var(--text-btn-secondary);
+	border: 1px solid var(--btn-border);
 	background-color: transparent;
 }
 
 .modal__btnCancel:hover {
-	background-color: var(--primaryColor);
-	color: var(--whiteColor);
-	border: none;
+	background-color: var(--btn-secondary-hover-background);
 }
 
 .modal__btnApply {
-	color: var(--whiteColor);
+	color: var(--text-btn);
 	border: none;
 }
 
-.modal__btnApply:hover {
-	border: 1px solid var(--primaryColor);
-	background-color: var(--btnPurpleHover);
+@media (max-width: 768px) {
+	.content {
+		width: 90vw;
+		height: 220px;
+	}
 }

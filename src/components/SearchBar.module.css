@@ -6,7 +6,7 @@
 }
 
 .searchbBar__input {
-	background: url("../images/search_icon.svg") no-repeat right;
+	background: var(--search-icon) no-repeat right;
 	background-size: 21px;
 	background-position-x: 98%;
 	display: flex;
@@ -27,25 +27,25 @@
 	font-weight: 500;
 	line-height: 18px;
 	text-align: left;
-	background-color: var(--primaryColor);
-	color: var(--whiteColor);
+	background-color: var(--btn-background);
+	color: var(--text-btn);
 	width: auto;
 	height: 38px;
 	padding: 0 10px;
 	border: none;
 	border-radius: 5px;
 	text-transform: uppercase;
-	box-shadow: 0 0 2px var(--primaryColor);
+	box-shadow: 0 0 2px var(--btn-shadow);
 	transition: 0.2s ease-in;
 }
 
 .searchbBar__btnFilters:hover {
-	background-color: var(--btnPurple);
+	background-color: var(--btn-hover-background);
 }
 
 .searchbBar__btnFilters:focus {
-	background-color: var(--btnPurpleHover);
-	border: 2px solid var(--primaryColor);
+	background-color: var(--btn-hover-background);
+	outline: 2px solid var(--btn-border);
 }
 
 .searchbBar__btnFiltersOption {
@@ -54,35 +54,45 @@
 	font-weight: 400;
 	line-height: 16px;
 	text-align: left;
-	color: var(--btnPurple);
-	background-color: var(--whiteColor);
-
-	border: 1px solid var(--primaryColor);
-	border-radius: 5px;
-
+	color: var(--purple);
+	background-color: var(--white);
 	width: 93px;
 	height: 38px;
 }
 
-.searchbBar__btnFiltersOption:hover {
-	color: var(--lightPurpleFontColor);
-	cursor: pointer;
-}
-
 .btnDarkMode {
-	background: url("../images/btn-dark_mode.svg") no-repeat;
+	background: var(--dark-mode-icon) no-repeat;
 	background-size: 22px;
 	background-position: 50% 50%;
 	width: 38px;
 	height: 38px;
 	border: none;
-	color: var(--whiteColor);
+	color: var(--text-btn);
 	flex-shrink: 0;
-	background-color: var(--primaryColor);
+	background-color: var(--btn-background);
 }
 
 .btnDarkMode:hover,
 .btnDarkMode:active {
-	background-color: var(--btnPurple);
-	box-shadow: 0 0 2px var(--primaryColor);
+	background-color: var(--btn-hover-background);
+	box-shadow: 0 0 2px var(--btn-shadow);
+}
+
+@media (max-width: 768px) {
+	.searchbBar {
+		display: grid;
+		grid-template-columns: 5fr auto;
+		width: 100%;
+		gap: 0.5rem;
+	}
+	.searchbBar__btnFilters {
+		justify-self: start;
+		align-self: start;
+	}
+	.btnDarkMode {
+		grid-column: 2/-1;
+		grid-row: 1/-1;
+		justify-self: end;
+		align-self: end;
+	}
 }

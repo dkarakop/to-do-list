@@ -1,15 +1,16 @@
 import { createRef } from "react";
-import styles from "./SearchBar.module.css";
+import lightStyles from "./SearchBar.module.css";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, onToggleDarkMode }) {
 	const searchRef = createRef();
 	const selectRef = createRef();
+	// const toggleRef = createRef();
 
 	return (
-		<div className={styles.searchbBar}>
+		<div className={lightStyles.searchbBar}>
 			<input
 				type="search"
-				className={styles.searchbBar__input}
+				className={lightStyles.searchbBar__input}
 				name="q"
 				placeholder="Search note..."
 				ref={searchRef}
@@ -23,7 +24,7 @@ export default function SearchBar({ onSearch }) {
 				autoComplete="off"
 			/>
 			<select
-				className={styles.searchbBar__btnFilters}
+				className={lightStyles.searchbBar__btnFilters}
 				ref={selectRef}
 				onChange={(e) => {
 					e.preventDefault();
@@ -35,24 +36,27 @@ export default function SearchBar({ onSearch }) {
 			>
 				<option
 					value="all"
-					className={styles.searchbBar__btnFiltersOption}
+					className={lightStyles.searchbBar__btnFiltersOption}
 				>
 					All
 				</option>
 				<option
 					value="complete"
-					className={styles.searchbBar__btnFiltersOption}
+					className={lightStyles.searchbBar__btnFiltersOption}
 				>
 					Complete
 				</option>
 				<option
 					value="incomplete"
-					className={styles.searchbBar__btnFiltersOption}
+					className={lightStyles.searchbBar__btnFiltersOption}
 				>
 					Incomplete
 				</option>
 			</select>
-			<button className={styles.btnDarkMode}></button>
+			<button
+				className={lightStyles.btnDarkMode}
+				onClick={onToggleDarkMode}
+			></button>
 		</div>
 	);
 }

@@ -8,7 +8,10 @@ import {
 import ToDoListItem from "./ToDoListItem";
 import SearchBar from "./SearchBar";
 import ModalWindow from "./Modal";
-import styles from "./ToDoApp.module.css";
+import lightStyles from "./ToDoApp.module.css";
+import "../App.css";
+import detective from "../images/detective-check-footprint.svg";
+import detectiveDarkMode from "../images/detective-check-dark-mode.svg";
 
 export default function ToDoApp() {
 	let initialState = {
@@ -29,6 +32,7 @@ export default function ToDoApp() {
 			filters: state.filters,
 			isModalOpen: state.isModalOpen,
 			selectedToDo: state.selectedToDo,
+			isDarkMode: state.isDarkMode,
 		};
 		switch (action.type) {
 			case "UPDATE_TODOS":
@@ -69,12 +73,10 @@ export default function ToDoApp() {
 		let updatedList = [];
 
 		if (state.filters.text !== "") {
-			updatedList = state.toDos.filter(
-				(toDo) =>
-					toDo.text
-						.toLowerCase()
-						.substring(0, state.filters.text.length) ===
-					state.filters.text.toLowerCase()
+			updatedList = state.toDos.filter((toDo) =>
+				toDo.text
+					.toLowerCase()
+					.includes(state.filters.text.toLowerCase())
 			);
 		} else {
 			updatedList = state.toDos;
@@ -99,20 +101,22 @@ export default function ToDoApp() {
 	}
 
 	function onApply(toDo) {
-		if (toDo.id) {
-			editToDoItem(toDo).then(() => {
-				getToDoItems().then((toDos) => {
-					dispatch({ type: "UPDATE_TODOS", toDos });
-					dispatch({ type: "CLOSE_MODAL" });
+		if (toDo.text !== "") {
+			if (toDo.id) {
+				editToDoItem(toDo).then(() => {
+					getToDoItems().then((toDos) => {
+						dispatch({ type: "UPDATE_TODOS", toDos });
+						dispatch({ type: "CLOSE_MODAL" });
+					});
 				});
-			});
-		} else {
-			createToDoItem(toDo.text).then(() => {
-				getToDoItems().then((toDos) => {
-					dispatch({ type: "UPDATE_TODOS", toDos });
-					dispatch({ type: "CLOSE_MODAL" });
+			} else {
+				createToDoItem(toDo.text).then(() => {
+					getToDoItems().then((toDos) => {
+						dispatch({ type: "UPDATE_TODOS", toDos });
+						dispatch({ type: "CLOSE_MODAL" });
+					});
 				});
-			});
+			}
 		}
 	}
 
@@ -136,28 +140,72 @@ export default function ToDoApp() {
 		dispatch({ type: "CLOSE_MODAL" });
 	}
 
+	function onChecked(toDo) {
+		toDo.completed = !toDo.completed;
+		editToDoItem(toDo).then(() => {
+			getToDoItems().then((toDos) => {
+				dispatch({ type: "UPDATE_TODOS", toDos });
+			});
+		});
+	}
+
+	const bodyApp = document.querySelector("body");
+
+	function toggleDarkMode() {
+		if (!bodyApp.classList.contains("dark")) {
+			bodyApp.classList.add("dark");
+		} else {
+			bodyApp.classList.remove("dark");
+		}
+	}
+
 	return (
-		<div className={styles.appContainer}>
+		<div className={lightStyles.appContainer}>
 			<header>
 				<h1>ToDo List</h1>
-				<SearchBar onSearch={onSearch} />
+				<SearchBar
+					onSearch={onSearch}
+					onToggleDarkMode={toggleDarkMode}
+				/>
 			</header>
 			<main>
-				<ul className={styles.toDolist}>
+				<ul
+					className={
+						lightStyles.toDolist +
+						" " +
+						(state.filteredToDos.length === 0
+							? lightStyles["toDoList--empty"]
+							: "")
+					}
+				>
 					{state.filteredToDos.map((toDo) =>
-						ToDoListItem({ toDo, onEdit, onDelete })
+						ToDoListItem({
+							toDo,
+							onEdit,
+							onDelete,
+							onChecked,
+						})
 					)}
 				</ul>
-				<button
-					onClick={createToDo}
-					className={styles.toDolist__btnCreate}
-				></button>
+				{state.filteredToDos.length === 0 ? (
+					<div className={lightStyles.emptyList}>
+						<p>Empty &hellip;</p>
+					</div>
+				) : (
+					""
+				)}
+				<div className={lightStyles.toDolist__btnCreate_container}>
+					<button
+						onClick={createToDo}
+						className={lightStyles.toDolist__btnCreate}
+					></button>
+				</div>
 				<ModalWindow
 					isOpen={state.isModalOpen}
 					onApply={onApply}
 					onCancel={cancelModal}
 					toDo={state.selectedToDo}
-					className={styles.ModalWindow}
+					className={lightStyles.ModalWindow}
 				/>
 			</main>
 		</div>
