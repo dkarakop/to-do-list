@@ -10,8 +10,6 @@ import SearchBar from "./SearchBar";
 import ModalWindow from "./Modal";
 import lightStyles from "./ToDoApp.module.css";
 import "../App.css";
-import detective from "../images/detective-check-footprint.svg";
-import detectiveDarkMode from "../images/detective-check-dark-mode.svg";
 
 export default function ToDoApp() {
 	let initialState = {
@@ -149,6 +147,8 @@ export default function ToDoApp() {
 		});
 	}
 
+	//* ---- Dark Theme Functionality ---- */
+
 	const bodyApp = document.querySelector("body");
 
 	function toggleDarkMode() {
@@ -167,6 +167,10 @@ export default function ToDoApp() {
 					onSearch={onSearch}
 					onToggleDarkMode={toggleDarkMode}
 				/>
+				<button
+					className={lightStyles.btnDarkMode}
+					onClick={toggleDarkMode}
+				></button>
 			</header>
 			<main>
 				<ul
@@ -178,14 +182,15 @@ export default function ToDoApp() {
 							: "")
 					}
 				>
-					{state.filteredToDos.map((toDo) =>
-						ToDoListItem({
-							toDo,
-							onEdit,
-							onDelete,
-							onChecked,
-						})
-					)}
+					{state.filteredToDos.map((toDo) => (
+						<ToDoListItem
+							key={toDo.id}
+							toDo={toDo}
+							onEdit={onEdit}
+							onDelete={onDelete}
+							onChecked={onChecked}
+						></ToDoListItem>
+					))}
 				</ul>
 				{state.filteredToDos.length === 0 ? (
 					<div className={lightStyles.emptyList}>

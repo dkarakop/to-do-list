@@ -7,6 +7,7 @@
 }
 
 :root {
+	/* Colors */
 	--purple: #6c63ff;
 	--purple-dark: #534cc2;
 	--purple-light: #c3c1e5;
@@ -41,14 +42,18 @@
 	--input-shadow: var(--purple);
 	--btn-shadow: var(--purple);
 
+	/* icons */
 	--search-icon: url("../images/search-icon.svg");
 	--dark-mode-icon: url("../images/btn-dark-mode.svg");
-
 	--emptyList-icon: url("../images/detective-check-footprint.svg");
+
+	/* fonts */
+	--font-primary: "Kanit", sans-serif;
+	--font-secondary: "Inter", sans-serif;
 }
 
 body {
-	font-family: "Kanit", sans-serif;
+	font-family: var(--font-primary);
 	font-size: 20px;
 	font-weight: 500;
 	line-height: 20px;
@@ -65,7 +70,7 @@ body {
 /* ----input---- */
 input {
 	color: var(--text-input);
-	font-family: "Inter", sans-serif;
+	font-family: var(--font-secondary);
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 16px;
@@ -88,7 +93,7 @@ input:focus {
 
 /* ----buttons---- */
 button {
-	font-family: "Kanit", sans-serif;
+	font-family: var(--font-primary);
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 18px;
@@ -142,24 +147,47 @@ ul::-webkit-scrollbar-thumb:hover {
 
 header {
 	height: 135px;
-	padding: 40px;
-	display: flex;
-	flex-direction: column;
-	place-items: center;
+	padding-top: 40px;
+	display: grid;
+	grid-template-columns: 2fr auto;
+	grid-template-rows: auto 1fr;
+	/* place-content: center;
+	place-items: center; */
+	grid-column-gap: 1rem;
+	grid-row-gap: 0.5rem;
 }
 
 h1 {
 	font-size: 26px;
 	font-weight: 500;
 	line-height: 38.87px;
-	text-align: center;
 	text-transform: uppercase;
-	width: 122px;
+	width: 100%;
 	height: 39px;
 	margin-bottom: 10px;
+	grid-column: 1/-1;
+}
+.btnDarkMode {
+	background: var(--dark-mode-icon) no-repeat;
+	background-size: 22px;
+	background-position: 50% 50%;
+	width: 38px;
+	height: 38px;
+	border: none;
+	color: var(--text-btn);
+	grid-column: 2/-1;
+	justify-self: end;
+	background-color: var(--btn-background);
+}
+
+.btnDarkMode:hover,
+.btnDarkMode:active {
+	background-color: var(--btn-hover-background);
+	box-shadow: 0 0 2px var(--btn-shadow);
 }
 
 main {
+	margin-top: 1.5rem;
 	display: flex;
 	flex-direction: column;
 	place-items: center;
@@ -171,7 +199,7 @@ main {
 	top: 30px;
 	left: 115px;
 	list-style: none;
-	margin-top: 0.5rem;
+	/* margin-top: 0.5rem; */
 }
 
 .toDolist__li {
@@ -182,14 +210,6 @@ main {
 	display: flex;
 	gap: 1rem;
 	place-items: center;
-}
-
-.toDolist__li:hover .toDoList__btnContainer {
-	opacity: 1;
-}
-
-.toDolist__li:first-child {
-	margin-top: 1.5rem;
 }
 
 .toDolist__li:last-child {
@@ -249,6 +269,11 @@ main {
 	justify-content: space-around;
 }
 
+.toDolist__li:hover .toDoList__btnContainer,
+.toDoList__btnContainer:focus-within {
+	opacity: 1;
+}
+
 .toDolist__buttons {
 	width: 18px;
 	height: 18px;
@@ -260,7 +285,8 @@ main {
 .toDolist__btnEdit {
 	background: url("../images/btn-edit.svg") no-repeat;
 }
-.toDolist__btnEdit:hover {
+.toDolist__btnEdit:hover,
+.toDolist__btnEdit:focus {
 	background: url("../images/btn-edit-purple.svg") no-repeat;
 }
 
@@ -268,7 +294,8 @@ main {
 	background: url("../images/btn-delete.svg") no-repeat;
 }
 
-.toDolist__btnDelete:hover {
+.toDolist__btnDelete:hover,
+.toDolist__btnDelete:focus {
 	background: url("../images/btn-delete-red.svg") no-repeat;
 }
 
@@ -284,6 +311,7 @@ main {
 	position: absolute;
 	right: 0;
 	bottom: 2rem;
+	right: 0.5rem;
 	display: inline-block;
 	background: url("../images/btn-create.svg") no-repeat;
 	background-position: 50% 50%;
@@ -320,14 +348,21 @@ main {
 
 	header {
 		padding: 0;
+		grid-template-columns: 2fr auto;
+		grid-template-rows: auto 1fr;
+		grid-column-gap: 0.5rem;
 	}
 
 	h1 {
 		font-size: 1.5rem;
 	}
+	.btnDarkMode {
+		grid-column: 2/-1;
+		grid-row: 2/-1;
+		align-self: start;
+	}
 
 	main {
-		margin-top: 1.5rem;
 		flex-direction: column;
 		height: 100%;
 	}

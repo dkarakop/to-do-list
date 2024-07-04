@@ -1,18 +1,20 @@
 import { createRef } from "react";
 import lightStyles from "./SearchBar.module.css";
 
-export default function SearchBar({ onSearch, onToggleDarkMode }) {
+export default function SearchBar({ onSearch }) {
 	const searchRef = createRef();
 	const selectRef = createRef();
 	// const toggleRef = createRef();
 
 	return (
 		<div className={lightStyles.searchbBar}>
+			<label htmlFor="Search Note"></label>
 			<input
 				type="search"
+				id="Search Note"
 				className={lightStyles.searchbBar__input}
 				name="q"
-				placeholder="Search note..."
+				placeholder="Search note&hellip;"
 				ref={searchRef}
 				onChange={(e) => {
 					e.preventDefault();
@@ -53,10 +55,6 @@ export default function SearchBar({ onSearch, onToggleDarkMode }) {
 					Incomplete
 				</option>
 			</select>
-			<button
-				className={lightStyles.btnDarkMode}
-				onClick={onToggleDarkMode}
-			></button>
 		</div>
 	);
 }
