@@ -1,19 +1,17 @@
-import { createRef } from "react";
-import lightStyles from "./SearchBar.module.css";
+import { useRef } from "react";
+import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
-	const searchRef = createRef();
-	const selectRef = createRef();
-	// const toggleRef = createRef();
+	const searchRef = useRef();
+	const selectRef = useRef();
 
 	return (
-		<div className={lightStyles.searchbBar}>
+		<div className={styles.searchbBar}>
 			<label htmlFor="Search Note"></label>
 			<input
 				type="search"
-				id="Search Note"
-				className={lightStyles.searchbBar__input}
-				name="q"
+				className={styles.searchbBar__input}
+				name="Search Note"
 				placeholder="Search note&hellip;"
 				ref={searchRef}
 				onChange={(e) => {
@@ -26,7 +24,7 @@ export default function SearchBar({ onSearch }) {
 				autoComplete="off"
 			/>
 			<select
-				className={lightStyles.searchbBar__btnFilters}
+				className={styles.searchbBar__btnFilters}
 				ref={selectRef}
 				onChange={(e) => {
 					e.preventDefault();
@@ -38,19 +36,19 @@ export default function SearchBar({ onSearch }) {
 			>
 				<option
 					value="all"
-					className={lightStyles.searchbBar__btnFiltersOption}
+					className={styles.searchbBar__btnFiltersOption}
 				>
 					All
 				</option>
 				<option
 					value="complete"
-					className={lightStyles.searchbBar__btnFiltersOption}
+					className={styles.searchbBar__btnFiltersOption}
 				>
 					Complete
 				</option>
 				<option
 					value="incomplete"
-					className={lightStyles.searchbBar__btnFiltersOption}
+					className={styles.searchbBar__btnFiltersOption}
 				>
 					Incomplete
 				</option>
