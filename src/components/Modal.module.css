@@ -1,3 +1,7 @@
+/*************************************/
+/* --------- Modal Overlay --------- */
+/*************************************/
+
 .overlay {
 	position: fixed;
 	top: 0;
@@ -9,6 +13,10 @@
 	justify-content: center;
 	align-items: flex-start;
 }
+
+/*************************************/
+/* --------- Modal Window --------- */
+/*************************************/
 
 .content {
 	width: 500px;
@@ -34,15 +42,18 @@
 	margin-bottom: 20px;
 }
 
-.modal__btnContainer {
-	display: flex;
-	justify-content: space-between;
-}
-
 .modal__input {
 	background-color: transparent;
 }
 
+/*************************************/
+/* --------- Modal Buttons --------- */
+/*************************************/
+
+.modal__btnContainer {
+	display: flex;
+	justify-content: space-between;
+}
 .modal__btnContainer button {
 	width: 110px;
 	height: 38px;
@@ -63,6 +74,10 @@
 	color: var(--text-btn);
 	border: none;
 }
+
+/*************************************/
+/* --------- Media Queries --------- */
+/*************************************/
 
 @media (max-width: 768px) {
 	.content {

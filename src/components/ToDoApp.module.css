@@ -1,3 +1,7 @@
+/*************************************/
+/* --------- General rules --------- */
+/*************************************/
+
 body {
 	font-family: var(--font-primary);
 	font-size: 20px;
@@ -11,9 +15,7 @@ body {
 	width: 100%;
 }
 
-/* General rules for elements */
-
-/* ----input---- */
+/* input */
 input {
 	color: var(--text-input);
 	font-family: var(--font-secondary);
@@ -37,7 +39,7 @@ input:focus {
 	box-shadow: 0 0 4px var(--input-shadow);
 }
 
-/* ----buttons---- */
+/* buttons */
 button {
 	font-family: var(--font-primary);
 	font-size: 18px;
@@ -54,27 +56,22 @@ button:hover {
 	background-color: var(--btn-hover-background);
 }
 
-/* ----cursor---- */
+/* cursor */
 button,
 select:hover,
 option:hover {
 	cursor: pointer;
 }
 
-p {
-	cursor: default;
-}
-
+/* unordered list */
 /* Target the scrollbar on the body element */
 ul::-webkit-scrollbar {
 	width: 12px;
 }
-
 /* Track - the part behind the handle */
 ul::-webkit-scrollbar-track {
 	background: var(--scrollbar-track-background);
 }
-
 /* Handle - the draggable scrolling box */
 ul::-webkit-scrollbar-thumb {
 	background: var(--scrollbar-thumb-background);
@@ -83,7 +80,10 @@ ul::-webkit-scrollbar-thumb {
 ul::-webkit-scrollbar-thumb:hover {
 	background: var(--scrollbar-thumb-hover-background);
 }
-/* ----------------------------------- */
+
+/*************************************/
+/* --------- App Container --------- */
+/*************************************/
 
 .appContainer {
 	width: 750px;
@@ -91,14 +91,15 @@ ul::-webkit-scrollbar-thumb:hover {
 	position: relative;
 }
 
+/*************************************/
+/* ------------ Header ------------ */
+/*************************************/
+
 header {
-	height: 135px;
-	padding-top: 40px;
+	padding-top: 2rem;
 	display: grid;
 	grid-template-columns: 2fr auto;
 	grid-template-rows: auto 1fr;
-	/* place-content: center;
-	place-items: center; */
 	grid-column-gap: 1rem;
 	grid-row-gap: 0.5rem;
 }
@@ -106,11 +107,9 @@ header {
 h1 {
 	font-size: 26px;
 	font-weight: 500;
-	line-height: 38.87px;
 	text-transform: uppercase;
 	width: 100%;
-	height: 39px;
-	margin-bottom: 10px;
+	margin-bottom: 1rem;
 	grid-column: 1/-1;
 	text-align: center;
 }
@@ -133,12 +132,21 @@ h1 {
 	box-shadow: 0 0 2px var(--btn-shadow);
 }
 
+/*************************************/
+/* ------------- Main ------------- */
+/*************************************/
+
 main {
 	margin-top: 1.5rem;
 	display: flex;
 	flex-direction: column;
 	place-items: center;
 }
+
+/*************************************/
+/* ---------- toDo List ------------ */
+/*************************************/
+
 .toDolist {
 	width: 520px;
 	max-height: 65vh;
@@ -146,10 +154,9 @@ main {
 	top: 30px;
 	left: 115px;
 	list-style: none;
-	/* margin-top: 0.5rem; */
 }
 
-.toDolist__li {
+.toDoList__li {
 	border-bottom: 1px solid var(--li-border);
 	padding: 1rem 0;
 	text-align: left;
@@ -159,7 +166,7 @@ main {
 	place-items: center;
 }
 
-.toDolist__li:last-child {
+.toDoList__li:last-child {
 	border: none;
 }
 
@@ -171,12 +178,33 @@ main {
 	height: 300px;
 	width: 100%;
 	margin-top: 1.5rem;
-	padding-top: 200px;
+	padding-top: 180px;
 	background: var(--emptyList-icon) no-repeat;
-	background-position: 50% 0%;
+	background-position: 50% 5%;
+}
+/*************************************/
+/* ----- toDo List Text-Note ------- */
+/*************************************/
+
+.toDoList__text {
+	display: inline-block;
+	width: 420px;
+	height: 20px;
 }
 
-.toDolist__checkbox {
+.toDoList__text--checked {
+	transition: all 0.5s ease-out;
+	transition: 200ms linear 50ms;
+	text-decoration: line-through;
+	color: var(--text-completed);
+	font-weight: 400;
+}
+
+/*************************************/
+/* ------ toDo List Buttons -------- */
+/*************************************/
+
+.toDoList__checkbox {
 	width: 26px;
 	height: 26px;
 	border-radius: 2px;
@@ -184,29 +212,15 @@ main {
 	border: 1px solid var(--btn-border);
 }
 
-.toDolist__checkbox:hover {
+.toDoList__checkbox:hover {
 	background-color: transparent;
 }
-.toDolist__checkbox--checked,
-.toDolist__checkbox--checked:hover {
+.toDoList__checkbox--checked,
+.toDoList__checkbox--checked:hover {
 	background: url("../images/btn-checked.svg") no-repeat;
 	background-size: 0.8rem;
 	background-position: 50% 50%;
 	background-color: var(--btn-background);
-}
-
-.toDolist__text {
-	display: inline-block;
-	width: 420px;
-	height: 20px;
-}
-
-.toDolist__text--checked {
-	transition: all 0.5s ease-out;
-	transition: 200ms linear 50ms;
-	text-decoration: line-through;
-	color: var(--text-completed);
-	font-weight: 400;
 }
 
 .toDoList__btnContainer {
@@ -216,12 +230,12 @@ main {
 	justify-content: space-around;
 }
 
-.toDolist__li:hover .toDoList__btnContainer,
+.toDoList__li:hover .toDoList__btnContainer,
 .toDoList__btnContainer:focus-within {
 	opacity: 1;
 }
 
-.toDolist__buttons {
+.toDoList__buttons {
 	width: 18px;
 	height: 18px;
 	background-position: 50% 50%;
@@ -229,30 +243,34 @@ main {
 	cursor: pointer;
 }
 
-.toDolist__btnEdit {
+.toDoList__btnEdit {
 	background: url("../images/btn-edit.svg") no-repeat;
 }
-.toDolist__btnEdit:hover,
-.toDolist__btnEdit:focus {
+.toDoList__btnEdit:hover,
+.toDoList__btnEdit:focus {
 	background: url("../images/btn-edit-purple.svg") no-repeat;
 }
 
-.toDolist__btnDelete {
+.toDoList__btnDelete {
 	background: url("../images/btn-delete.svg") no-repeat;
 }
 
-.toDolist__btnDelete:hover,
-.toDolist__btnDelete:focus {
+.toDoList__btnDelete:hover,
+.toDoList__btnDelete:focus {
 	background: url("../images/btn-delete-red.svg") no-repeat;
 }
 
-.toDolist__btnCreate_container {
+/*************************************/
+/* --- Create New toDo Button ----- */
+/*************************************/
+
+.toDoList__btnCreate_container {
 	position: fixed;
 	bottom: 0;
 	width: 750px;
 }
 
-.toDolist__btnCreate {
+.toDoList__btnCreate {
 	width: 50px;
 	height: 50px;
 	position: absolute;
@@ -267,9 +285,13 @@ main {
 	box-shadow: 0px 0px 4px 0px var(--btn-shadow);
 	background-color: var(--btn-background);
 }
-.toDolist__btnCreate:hover {
+.toDoList__btnCreate:hover {
 	background-color: var(--btn-hover-background);
 }
+
+/*************************************/
+/* --------- Media Queries --------- */
+/*************************************/
 
 @media (max-width: 768px) {
 	body {
@@ -295,9 +317,6 @@ main {
 
 	header {
 		padding: 0;
-		grid-template-columns: 2fr auto;
-		grid-template-rows: auto 1fr;
-		grid-column-gap: 0.5rem;
 	}
 
 	h1 {
@@ -323,25 +342,25 @@ main {
 		position: relative;
 	}
 
-	.toDolist__text {
+	.toDoList__text {
 		flex-grow: 2;
 		width: 5rem;
 	}
 	.toDoList__btnContainer {
 		opacity: 1;
 	}
-	.toDolist__btnEdit {
+	.toDoList__btnEdit {
 		background: url("../images/btn-edit-purple.svg") no-repeat;
 	}
-	.toDolist__btnDelete {
+	.toDoList__btnDelete {
 		background: url("../images/btn-delete-red.svg") no-repeat;
 	}
 
-	.toDolist__btnCreate_container {
+	.toDoList__btnCreate_container {
 		width: 100vw;
 	}
 
-	.toDolist__btnCreate {
+	.toDoList__btnCreate {
 		position: absolute;
 		right: 1rem;
 		bottom: 1rem;
