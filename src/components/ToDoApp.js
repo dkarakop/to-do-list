@@ -8,7 +8,7 @@ import {
 import ToDoListItem from "./ToDoListItem";
 import SearchBar from "./SearchBar";
 import ModalWindow from "./Modal";
-import lightStyles from "./ToDoApp.module.css";
+import styles from "./ToDoApp.module.css";
 import "../App.css";
 
 export default function ToDoApp() {
@@ -94,6 +94,8 @@ export default function ToDoApp() {
 		dispatch({ type: "UPDATE_FILTERED_TODOS", toDos: updatedList });
 	}, [state.toDos, state.filters]);
 
+	//* ------------- Event Handlers ------------- *//
+
 	function onSearch(filters) {
 		dispatch({ type: "UPDATE_FILTERS", filters });
 	}
@@ -152,15 +154,11 @@ export default function ToDoApp() {
 	const bodyApp = document.querySelector("body");
 
 	function toggleDarkMode() {
-		if (!bodyApp.classList.contains("dark")) {
-			bodyApp.classList.add("dark");
-		} else {
-			bodyApp.classList.remove("dark");
-		}
+		return bodyApp.classList.toggle("dark");
 	}
 
 	return (
-		<div className={lightStyles.appContainer}>
+		<div className={styles.appContainer}>
 			<header>
 				<h1>ToDo List</h1>
 				<SearchBar
@@ -168,17 +166,17 @@ export default function ToDoApp() {
 					onToggleDarkMode={toggleDarkMode}
 				/>
 				<button
-					className={lightStyles.btnDarkMode}
+					className={styles.btnDarkMode}
 					onClick={toggleDarkMode}
 				></button>
 			</header>
 			<main>
 				<ul
 					className={
-						lightStyles.toDolist +
+						styles.toDolist +
 						" " +
 						(state.filteredToDos.length === 0
-							? lightStyles["toDoList--empty"]
+							? styles["toDoList--empty"]
 							: "")
 					}
 				>
@@ -193,16 +191,16 @@ export default function ToDoApp() {
 					))}
 				</ul>
 				{state.filteredToDos.length === 0 ? (
-					<div className={lightStyles.emptyList}>
+					<div className={styles.emptyList}>
 						<p>Empty &hellip;</p>
 					</div>
 				) : (
 					""
 				)}
-				<div className={lightStyles.toDolist__btnCreate_container}>
+				<div className={styles.toDoList__btnCreate_container}>
 					<button
 						onClick={createToDo}
-						className={lightStyles.toDolist__btnCreate}
+						className={styles.toDoList__btnCreate}
 					></button>
 				</div>
 				<ModalWindow
@@ -210,7 +208,7 @@ export default function ToDoApp() {
 					onApply={onApply}
 					onCancel={cancelModal}
 					toDo={state.selectedToDo}
-					className={lightStyles.ModalWindow}
+					className={styles.ModalWindow}
 				/>
 			</main>
 		</div>
