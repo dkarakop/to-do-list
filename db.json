@@ -1,0 +1,24 @@
+{
+  "toDos": [
+    {
+      "id": "1720455766802",
+      "text": "Make dinner",
+      "completed": false
+    },
+    {
+      "id": "1720455793003",
+      "text": "Clean Bathroom",
+      "completed": true
+    },
+    {
+      "id": "1720455810000",
+      "text": "Go for Shopping",
+      "completed": false
+    },
+    {
+      "id": "1720455875463",
+      "text": "Buy Gandalf's food",
+      "completed": false
+    }
+  ]
+}
