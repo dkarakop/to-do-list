@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# ToDo List web application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+-   [Project Overview](#project-overview)
+-   [Features](#features)
+-   [Installation](#installation)
+-   [Technologies Used](#technologies-used)
+-   [Technical Details](#technical-details)
+-   [How to use the app](#how-to-use-the-app)
 
-In the project directory, you can run:
+## Project Overview
 
-### `npm start`
+This project is a ToDo List web application developed as part of [TechPro Academy](https://www.techproacademy.gr/). The purpose of this application is to allow users to create, edit, and remove to-do notes. The project implements various technologies and concepts taught during the bootcamp.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   **Fetch and display to-do notes:** Retrieves and shows a list of to-do items.
+-   **Client-side filtering:** Filter displayed to-do notes based on search input and dropdown filter (all/complete/incomplete).
+-   **Mark to-do as completed:** Toggle the completion status of a to-do item.
+-   **Create a to-do:** Add a new to-do item.
+-   **Edit a to-do:** Edit an existing one to-do item.
+-   **Delete a to-do:** Remove a to-do item from the to-do list.
+-   **Toggle dark/light scheme:** Switch between light and dark themes.
+-   **Pop-up dialogue window:** Uses react-modal for dialog interactions.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
 
-### `npm run build`
+    ```bash
+    git clone https://github.com/dkarakop/to-do-list
+    cd to-do-list
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    npm install
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start **both** JSON server and React application
+    ```bash
+    npm run start-all
+    ```
 
-### `npm run eject`
+### To start them separately
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+JSON server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npx json-server --watch db.json --port 3001
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+React application:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+### Configuration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+If you want to access the app from another address than `localhost` you will have to set the `REACT_APP_API_URL` environment variable accordingly.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies Used
 
-### Code Splitting
+-   Javascript/React
+-   HTML
+-   CSS/BEM
+-   Responsive Design
+-   JSON Server (for local backend)
+-   CSS variables
+-   Concurrently (to run multiple commands concurrently)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Technical Details
 
-### Analyzing the Bundle Size
+-   **Modal Window**: The app includes a pop-up dialogue window implemented using the `react-modal` package.
+-   **Local JSON Server**: For network request interactions, a local JSON server is set up using the `json-server` package. The JSON file is configured based on the app's requirements.
+-   **State Management**: The following React hooks are used for state management and functionality:
+    -   `useReducer`: Manages complex state logic.
+    -   `useRef`: Accesses DOM elements directly.
+    -   `useEffect`: Handles side effects such as data fetching.
+-   **BEM Naming Convention**: CSS is written using the [BEM](https://getbem.com/) (Block Element Modifier) naming convention for better organization and readability.
+-   **CSS Variables**: CSS variables are used to maintain consistency in styling and to support the dark/light themes.
+-   **Concurrently**: The app uses the `concurrently` package to run `json-server` and `npm-start` commands simultaneously with a single command.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## How to use the app
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   **Search and filter:** Use the search bar to filter to-do items by text. Use the dropdown menu to filter by completion status (all/complete/incomplete).
+-   **Add a to-do:** Enter text in the input field and press Enter to add a new to-do item.
+-   **Edit a to-do:** Click on a to-do item to open the modal, edit the text, and save changes.
+-   **Delete a to-do:** Click the delete button to remove a to-do item.
+-   **Mark as completed:** Click the checkbox to toggle the completion status of a to-do item.
+-   **Toggle theme:** Click the theme switch button to toggle between light and dark modes.
