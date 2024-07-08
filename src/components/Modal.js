@@ -8,25 +8,38 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 
 	const inputRef = useRef(null);
 
+	/**
+	 *Setting up the input field (inputRef.current) inside an opened modal window.
+	 * @param void
+	 */
 	function afterOpenModal() {
+		// Setting input field value based on whether toDo exists
 		if (toDo) {
 			inputRef.current.value = toDo.text;
 		} else {
 			inputRef.current.value = "";
 		}
 
+		// Setting focus on the input field
 		inputRef.current.focus();
 
+		// Listening for Enter key press to apply changes
 		const onEnter = function (event) {
 			if (event.keyCode === 13) {
 				apply(event);
+				// Remove event listener after use
 				inputRef.current.removeEventListener("keydown", onEnter);
 			}
 		};
 
+		// Add event listener for Enter key press
 		inputRef.current.addEventListener("keydown", onEnter);
 	}
 
+	/**
+	 *Applying changes to a toDo item when the form is submitted, either by editing an existing toDo or creating a new one.
+	 * @param event
+	 */
 	function apply(event) {
 		event.preventDefault();
 		if (toDo) {
@@ -40,10 +53,11 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 			};
 			onApply(newToDo);
 		}
+		// Clearing the input field to reset the form for future use
 		inputRef.current.value = "";
 	}
-	let toDoLabel = toDo ? "Edit Note" : "New Note";
 
+	//* ----------------- JSX ----------------- *//
 	return (
 		<div>
 			<Modal
@@ -55,7 +69,9 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 				contentLabel="Create New Note"
 			>
 				<div className={styles.modal__headContainer}>
-					<h2 className={styles.modal__header}>{toDoLabel}</h2>
+					<h2 className={styles.modal__header}>
+						{toDo ? "Edit Note" : "New Note"}
+					</h2>
 					<label htmlFor="ToDo text"></label>
 					<input
 						type="text"

@@ -2,9 +2,11 @@ import { useRef } from "react";
 import styles from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
+	// References for directly access to the DOM elements search input and the select dropdown.
 	const searchRef = useRef();
 	const selectRef = useRef();
 
+	//* ----------------- JSX ----------------- *//
 	return (
 		<div className={styles.searchbBar}>
 			<label htmlFor="Search Note"></label>

@@ -23,6 +23,12 @@ export default function ToDoApp() {
 		selectedToDo: null,
 	};
 
+	/**
+	 * Reducer (pure) function for updating state.
+	 * @param {*} state
+	 * @param {*} action
+	 * @returns ToDoApp's next state (newState)
+	 */
 	function toDosReducer(state, action) {
 		const newState = {
 			toDos: state.toDos,
@@ -61,6 +67,8 @@ export default function ToDoApp() {
 
 	const [state, dispatch] = useReducer(toDosReducer, initialState);
 
+	//* ------------------ Fetch ------------------ *//
+
 	useEffect(() => {
 		getToDoItems().then((toDos) => {
 			dispatch({ type: "UPDATE_TODOS", toDos });
@@ -94,12 +102,21 @@ export default function ToDoApp() {
 		dispatch({ type: "UPDATE_FILTERED_TODOS", toDos: updatedList });
 	}, [state.toDos, state.filters]);
 
-	//* ------------- Event Handlers ------------- *//
+	//* --------------- Event Handlers --------------- *//
 
+	/**
+	 *Updating the toDoApp's filters in the state managed by dispatching an UPDATE_FILTERS action based on the provided SearchBar's input.
+	 * @param filters an object with text and status properties
+	 */
 	function onSearch(filters) {
 		dispatch({ type: "UPDATE_FILTERS", filters });
 	}
 
+	/**
+	 *Applying changes to a toDo item: it's creating a new one or editing an existing one based on its id.
+	 It updates the toDoApp's state with the latest list of toDo items before closing the modal window.
+	 * @param toDo
+	 */
 	function onApply(toDo) {
 		if (toDo.text !== "") {
 			if (toDo.id) {
@@ -120,10 +137,18 @@ export default function ToDoApp() {
 		}
 	}
 
+	/**
+	 *Editing the text of an existing toDo.
+	 * @param toDo
+	 */
 	function onEdit(toDo) {
 		dispatch({ type: "EDIT_TODO", toDo });
 	}
 
+	/**
+	 *Deleting a toDo based on its id and Updating the toDoApp's state to reflect this change.
+	 * @param toDo
+	 */
 	function onDelete(toDo) {
 		deleteToDoItem(toDo.id).then(() => {
 			getToDoItems().then((toDos) => {
@@ -140,6 +165,10 @@ export default function ToDoApp() {
 		dispatch({ type: "CLOSE_MODAL" });
 	}
 
+	/**
+	 * Toggling the completed status of an existing toDo item and Updating the toDoApp's state to reflect this change.
+	 * @param toDo
+	 */
 	function onChecked(toDo) {
 		toDo.completed = !toDo.completed;
 		editToDoItem(toDo).then(() => {
@@ -149,7 +178,7 @@ export default function ToDoApp() {
 		});
 	}
 
-	//* ---- Dark Theme Functionality ---- */
+	//* ------- Dark Theme Functionality ------- *//
 
 	const bodyApp = document.querySelector("body");
 
@@ -157,6 +186,7 @@ export default function ToDoApp() {
 		return bodyApp.classList.toggle("dark");
 	}
 
+	//* ----------------- JSX ----------------- *//
 	return (
 		<div className={styles.appContainer}>
 			<header>

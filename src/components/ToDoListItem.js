@@ -1,6 +1,7 @@
 import styles from "./ToDoApp.module.css";
 
 export default function ToDoListItem({ toDo, onEdit, onDelete, onChecked }) {
+	//* ----------------- JSX ----------------- *//
 	return (
 		<li className={styles.toDoList__li}>
 			<button
