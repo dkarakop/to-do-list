@@ -26,6 +26,9 @@ This project is a ToDo List web application developed as part of [TechPro Academ
 
 ## Installation
 
+> [!NOTE]
+> Requires node v20.14.0 or higher.
+
 1. Clone the repository:
 
     ```bash
