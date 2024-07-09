@@ -14,7 +14,7 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
-		"json-server": "npx json-server --port 3001 db.json",
+		"json-server": "npx json-server --port 3001 server/db.json",
 		"start-all": "conc \"npm start\" \"npm run json-server\"",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
