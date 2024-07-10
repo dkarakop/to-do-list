@@ -6,9 +6,9 @@ const apiUrl = process.env.REACT_APP_API_URL;
  * @param none
  * @returns a Promise
  */
-export const getToDoItems = () => {
+export function getToDoItems() {
 	return fetch(`${apiUrl}/toDos`).then((response) => response.json());
-};
+}
 
 /**
  * Adding a newly created toDo object to the 'toDos' array in our database. The new object's properties are: id: a new unique id, text: the provided text, completed: false.
