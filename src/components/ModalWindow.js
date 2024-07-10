@@ -59,7 +59,7 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 
 	//* ----------------- JSX ----------------- *//
 	return (
-		<div>
+		<>
 			<Modal
 				isOpen={isOpen}
 				onAfterOpen={afterOpenModal}
@@ -98,6 +98,6 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 					</button>
 				</div>
 			</Modal>
-		</div>
+		</>
 	);
 }
