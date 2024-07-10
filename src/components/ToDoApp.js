@@ -181,6 +181,9 @@ export default function ToDoApp() {
 
 	const bodyApp = document.querySelector("body");
 
+	/**
+	 * Toggling between default theme and dark theme.
+	 */
 	function onToggleDarkMode() {
 		return bodyApp.classList.toggle("dark");
 	}
