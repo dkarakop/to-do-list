@@ -36,7 +36,6 @@ export default function ToDoApp() {
 			filters: state.filters,
 			isModalOpen: state.isModalOpen,
 			selectedToDo: state.selectedToDo,
-			isDarkMode: state.isDarkMode,
 		};
 		switch (action.type) {
 			case "UPDATE_TODOS":
