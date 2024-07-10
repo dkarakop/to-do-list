@@ -1,5 +1,5 @@
 /*************************************/
-/* ------  Initialization ------ */
+/* --------  Initialization -------- */
 /*************************************/
 
 /* fonts */
@@ -60,6 +60,71 @@
 	/* fonts */
 	--font-primary: "Kanit", sans-serif;
 	--font-secondary: "Inter", sans-serif;
+}
+
+/*************************************/
+/* --------- General rules --------- */
+/*************************************/
+
+body {
+	font-family: var(--font-primary);
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 20px;
+	text-align: center;
+	display: flex;
+	place-content: center;
+	background-color: var(--page-background);
+	color: var(--text);
+	width: 100%;
+}
+
+/* input */
+input {
+	color: var(--text-input);
+	font-family: var(--font-secondary);
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 16px;
+	text-align: left;
+	width: 100%;
+	padding: 8px 16px 8px 16px;
+	border: 1px solid var(--input-border);
+	border-radius: 5px;
+}
+
+input::placeholder {
+	color: var(--text-placeholder);
+	border: none;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 4px var(--input-shadow);
+}
+
+/* buttons */
+button {
+	font-family: var(--font-primary);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 18px;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: var(--btn-background);
+	border-radius: 5px;
+	transition: 0.2s ease-in;
+}
+
+button:hover {
+	background-color: var(--btn-hover-background);
+}
+
+/* cursor */
+button,
+select:hover,
+option:hover {
+	cursor: pointer;
 }
 
 /*************************************/
