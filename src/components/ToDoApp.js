@@ -7,7 +7,7 @@ import {
 } from "../modules/api";
 import ToDoListItem from "./ToDoListItem";
 import SearchBar from "./SearchBar";
-import ModalWindow from "./Modal";
+import ModalWindow from "./ModalWindow";
 import styles from "./ToDoApp.module.css";
 import "../App.css";
 

@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import { useRef } from "react";
-import styles from "./Modal.module.css";
+import styles from "./ModalWindow.module.css";
 
 export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 	// Binding modal to our App
