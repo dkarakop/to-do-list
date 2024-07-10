@@ -181,7 +181,7 @@ export default function ToDoApp() {
 
 	const bodyApp = document.querySelector("body");
 
-	function toggleDarkMode() {
+	function onToggleDarkMode() {
 		return bodyApp.classList.toggle("dark");
 	}
 
@@ -190,13 +190,10 @@ export default function ToDoApp() {
 		<div className={styles.appContainer}>
 			<header>
 				<h1 className={styles.header__title}>ToDo List</h1>
-				<SearchBar
-					onSearch={onSearch}
-					onToggleDarkMode={toggleDarkMode}
-				/>
+				<SearchBar onSearch={onSearch} />
 				<button
 					className={styles.btnDarkMode}
-					onClick={toggleDarkMode}
+					onClick={onToggleDarkMode}
 				></button>
 			</header>
 			<main>
