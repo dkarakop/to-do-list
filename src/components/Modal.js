@@ -66,7 +66,7 @@ export default function ModalWindow({ isOpen, onApply, onCancel, toDo }) {
 				onRequestClose={onCancel}
 				className={styles.content}
 				overlayClassName={styles.overlay}
-				contentLabel="Create New Note"
+				contentLabel="Modal Window"
 			>
 				<div className={styles.modal__headContainer}>
 					<h2 className={styles.modal__header}>
