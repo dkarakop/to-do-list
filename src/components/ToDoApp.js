@@ -190,7 +190,7 @@ export default function ToDoApp() {
 	return (
 		<div className={styles.appContainer}>
 			<header>
-				<h1>ToDo List</h1>
+				<h1 className={styles.header__title}>ToDo List</h1>
 				<SearchBar
 					onSearch={onSearch}
 					onToggleDarkMode={toggleDarkMode}
