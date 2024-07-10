@@ -72,7 +72,8 @@ If you want to access the app from another address than `localhost` you will hav
 -   CSS/BEM
 -   Responsive Design
 -   JSON Server (for local backend)
--   CSS variables
+-   CSS variable
+-   CSS Grid and Flexbox (for layout)
 -   Concurrently (to run multiple commands concurrently)
 
 ## Technical Details
@@ -85,6 +86,7 @@ If you want to access the app from another address than `localhost` you will hav
     -   `useEffect`: Handles side effects such as data fetching.
 -   **BEM Naming Convention**: CSS is written using the [BEM](https://getbem.com/) (Block Element Modifier) naming convention for better organization and readability.
 -   **CSS Variables**: CSS variables are used to maintain consistency in styling and to support the dark/light themes.
+-   **CSS Grid and Flexbox**: These techniques are employed throughout the project to ensure a responsive and flexible layout, adapting to different screen sizes and providing a consistent user experience.
 -   **Concurrently**: The app uses the `concurrently` package to run `json-server` and `npm-start` commands simultaneously with a single command.
 
 ## How to use the app
