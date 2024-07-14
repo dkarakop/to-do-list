@@ -23,21 +23,21 @@ export default function DeleteModalWindow({
 						Do you want to delete this to-Do?
 					</h2>
 				</div>
-				<p>{toDo.text}</p>
+				<p className={styles.modal__toDoText}>{toDo.text}</p>
 				<div className={styles.modal__btnContainer}>
 					<button
 						type="button"
 						onClick={onCancel}
 						className={styles.modal__btnCancel}
 					>
-						No
+						Cancel
 					</button>
 					<button
 						type="button"
 						onClick={() => onDelete(toDo)}
 						className={styles.modal__btnDelete}
 					>
-						Yes
+						Delete
 					</button>
 				</div>
 			</Modal>

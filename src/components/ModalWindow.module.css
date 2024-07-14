@@ -46,6 +46,10 @@
 	background-color: transparent;
 }
 
+.modal__toDoText {
+	font-weight: normal;
+}
+
 /*************************************/
 /* --------- Modal Buttons --------- */
 /*************************************/
@@ -73,6 +77,17 @@
 .modal__btnApply {
 	color: var(--text-btn);
 	border: none;
+}
+
+.modal__btnDelete {
+	background-color: var(--btn-delete-background);
+	border: 1px solid var(--btn-delete-background);
+	color: var(--text-btn);
+}
+
+.modal__btnDelete:hover {
+	background-color: var(--btn-delete-hover-background);
+	border: 1px solid var(--btn-delete-hover-background);
 }
 
 /*************************************/

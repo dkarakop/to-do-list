@@ -93,7 +93,6 @@ main {
 	border-bottom: 1px solid var(--li-border);
 	padding: 1rem 0;
 	text-align: left;
-	text-transform: uppercase;
 	display: flex;
 	gap: 1rem;
 	place-items: center;

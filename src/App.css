@@ -21,6 +21,8 @@
 	--purple: #6c63ff;
 	--purple-dark: #534cc2;
 	--purple-light: #c3c1e5;
+	--red: #fe0f0f;
+	--red-dark: #cb0c0c;
 	--white: #f7f7f7;
 	--white-transparent: #ffffff80;
 	--gray: #cdcdcd;
@@ -39,6 +41,8 @@
 	--btn-background: var(--purple);
 	--btn-hover-background: var(--purple-dark);
 	--btn-secondary-hover-background: var(--purple-light);
+	--btn-delete-background: var(--red);
+	--btn-delete-hover-background: var(--red-dark);
 	--overlay-background: var(--black-transparent);
 	--scrollbar-track-background: var(--purple-light);
 	--scrollbar-thumb-background: var(--purple);
