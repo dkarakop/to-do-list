@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./ToDoApp.module.css";
-import DeleteModalWindow from "./DeleteModalWindow";
+import DeleteModalWindow from "./DeleteModal";
 
 export default function ToDoListItem({ toDo, onEdit, onDelete, onChecked }) {
 	const [confirmDelete, setConfirmDelete] = useState(false);

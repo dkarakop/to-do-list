@@ -35,7 +35,7 @@ export default function DeleteModalWindow({
 					<button
 						type="button"
 						onClick={() => onDelete(toDo)}
-						className={styles.modal__btnApply}
+						className={styles.modal__btnDelete}
 					>
 						Yes
 					</button>
