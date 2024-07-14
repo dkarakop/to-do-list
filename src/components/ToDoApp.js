@@ -55,8 +55,13 @@ export default function ToDoApp() {
 				newState.selectedToDo = action.toDo;
 				newState.isModalOpen = true;
 				break;
+			case "DELETE_TODO":
+				newState.selectedToDo = action.toDo;
+				newState.isDeleteModalOpen = true;
+				break;
 			case "CLOSE_MODAL":
 				newState.isModalOpen = false;
+				newState.isDeleteModalOpen = false;
 				break;
 			default:
 				break;
@@ -152,6 +157,7 @@ export default function ToDoApp() {
 		deleteToDoItem(toDo.id).then(() => {
 			getToDoItems().then((toDos) => {
 				dispatch({ type: "UPDATE_TODOS", toDos });
+				dispatch({ type: "CLOSE_MODAL" });
 			});
 		});
 	}
